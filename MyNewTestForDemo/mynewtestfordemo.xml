@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mynewtestfordemo" default="all">
+  
+  
+  <property file="mynewtestfordemo.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.tox/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.apk"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.maven:_cglib:cglib-nodep:2.1_3.classpath">
+    <pathelement location="${path.variable.maven_repository}/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.code.findbugs:jsr305:2.0.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/code/findbugs/jsr305/2.0.1/jsr305-2.0.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.code.gson:gson:2.3.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/code/gson/gson/2.3.1/gson-2.3.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.guava:guava:18.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/guava/guava/18.0/guava-18.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-codec:commons-codec:1.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.9/commons-codec-1.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-collections:commons-collections:3.2.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-io:commons-io:2.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-io/commons-io/2.4/commons-io-2.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-logging:commons-logging:1.1.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_io.netty:netty:3.5.2.final.classpath">
+    <pathelement location="${path.variable.maven_repository}/io/netty/netty/3.5.2.Final/netty-3.5.2.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_junit:junit:4.11.classpath">
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.11/junit-4.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.java.dev.jna:jna:3.4.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/java/dev/jna/jna/3.4.0/jna-3.4.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.java.dev.jna:platform:3.4.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/java/dev/jna/platform/3.4.0/platform-3.4.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.sourceforge.cssparser:cssparser:0.9.14.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/sourceforge/cssparser/cssparser/0.9.14/cssparser-0.9.14.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.sourceforge.htmlunit:htmlunit-core-js:2.15.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/sourceforge/htmlunit/htmlunit-core-js/2.15/htmlunit-core-js-2.15.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.sourceforge.htmlunit:htmlunit:2.15.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/sourceforge/htmlunit/htmlunit/2.15/htmlunit-2.15.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.sourceforge.nekohtml:nekohtml:1.9.21.classpath">
+    <pathelement location="${path.variable.maven_repository}/net/sourceforge/nekohtml/nekohtml/1.9.21/nekohtml-1.9.21.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.commons:commons-exec:1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-exec/1.1/commons-exec-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.httpcomponents:httpclient:4.3.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/httpcomponents/httpclient/4.3.6/httpclient-4.3.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.httpcomponents:httpcore:4.3.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/httpcomponents/httpcore/4.3.3/httpcore-4.3.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.httpcomponents:httpmime:4.3.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/httpcomponents/httpmime/4.3.3/httpmime-4.3.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.shared:maven-shared-utils:0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/shared/maven-shared-utils/0.9/maven-shared-utils-0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.surefire:common-java5:2.19.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/surefire/common-java5/2.19/common-java5-2.19.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.surefire:common-junit3:2.19.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/surefire/common-junit3/2.19/common-junit3-2.19.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.surefire:common-junit48:2.19.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/surefire/common-junit48/2.19/common-junit48-2.19.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.surefire:common-junit4:2.19.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/surefire/common-junit4/2.19/common-junit4-2.19.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.surefire:surefire-api:2.19.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/surefire/surefire-api/2.19/surefire-api-2.19.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.surefire:surefire-grouper:2.19.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/surefire/surefire-grouper/2.19/surefire-grouper-2.19.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.maven.surefire:surefire-junit47:2.19.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/apache/maven/surefire/surefire-junit47/2.19/surefire-junit47-2.19.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.jetty:jetty-http:8.1.15.v20140411.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/jetty/jetty-http/8.1.15.v20140411/jetty-http-8.1.15.v20140411.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.jetty:jetty-io:8.1.15.v20140411.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/jetty/jetty-io/8.1.15.v20140411/jetty-io-8.1.15.v20140411.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.jetty:jetty-util:8.1.15.v20140411.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/jetty/jetty-util/8.1.15.v20140411/jetty-util-8.1.15.v20140411.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.eclipse.jetty:jetty-websocket:8.1.15.v20140411.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/eclipse/jetty/jetty-websocket/8.1.15.v20140411/jetty-websocket-8.1.15.v20140411.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.seleniumhq.selenium:selenium-api:2.45.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/seleniumhq/selenium/selenium-api/2.45.0/selenium-api-2.45.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.seleniumhq.selenium:selenium-chrome-driver:2.45.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/seleniumhq/selenium/selenium-chrome-driver/2.45.0/selenium-chrome-driver-2.45.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.seleniumhq.selenium:selenium-firefox-driver:2.45.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/seleniumhq/selenium/selenium-firefox-driver/2.45.0/selenium-firefox-driver-2.45.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.seleniumhq.selenium:selenium-htmlunit-driver:2.45.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/seleniumhq/selenium/selenium-htmlunit-driver/2.45.0/selenium-htmlunit-driver-2.45.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.seleniumhq.selenium:selenium-ie-driver:2.45.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/seleniumhq/selenium/selenium-ie-driver/2.45.0/selenium-ie-driver-2.45.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.seleniumhq.selenium:selenium-java:2.45.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/seleniumhq/selenium/selenium-java/2.45.0/selenium-java-2.45.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.seleniumhq.selenium:selenium-leg-rc:2.45.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/seleniumhq/selenium/selenium-leg-rc/2.45.0/selenium-leg-rc-2.45.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.seleniumhq.selenium:selenium-remote-driver:2.45.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/seleniumhq/selenium/selenium-remote-driver/2.45.0/selenium-remote-driver-2.45.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.seleniumhq.selenium:selenium-safari-driver:2.45.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/seleniumhq/selenium/selenium-safari-driver/2.45.0/selenium-safari-driver-2.45.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.seleniumhq.selenium:selenium-support:2.45.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/seleniumhq/selenium/selenium-support/2.45.0/selenium-support-2.45.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.w3c.css:sac:1.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/w3c/css/sac/1.3/sac-1.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.webbitserver:webbit:0.4.14.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/webbitserver/webbit/0.4.14/webbit-0.4.14.jar"/>
+  </path>
+  
+  <path id="library.maven:_xalan:serializer:2.7.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/xalan/serializer/2.7.1/serializer-2.7.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_xalan:xalan:2.7.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/xalan/xalan/2.7.1/xalan-2.7.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_xerces:xercesimpl:2.11.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/xerces/xercesImpl/2.11.0/xercesImpl-2.11.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_xml-apis:xml-apis:1.4.01.classpath">
+    <pathelement location="${path.variable.maven_repository}/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module MyNewTestForDemo -->
+  
+  <dirname property="module.mynewtestfordemo.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.mynewtestfordemo" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.mynewtestfordemo" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.mynewtestfordemo" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.mynewtestfordemo" value="-encoding windows-1252 -source 1.5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="mynewtestfordemo.output.dir" value="${module.mynewtestfordemo.basedir}/target/classes"/>
+  <property name="mynewtestfordemo.testoutput.dir" value="${module.mynewtestfordemo.basedir}/target/test-classes"/>
+  
+  <path id="mynewtestfordemo.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="mynewtestfordemo.module.production.classpath">
+    <path refid="${module.jdk.classpath.mynewtestfordemo}"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-java:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-chrome-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-remote-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_cglib:cglib-nodep:2.1_3.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.3.1.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-api:2.45.0.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:18.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-htmlunit-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_net.sourceforge.htmlunit:htmlunit:2.15.classpath"/>
+    <path refid="library.maven:_xalan:xalan:2.7.1.classpath"/>
+    <path refid="library.maven:_xalan:serializer:2.7.1.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpmime:4.3.3.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_net.sourceforge.htmlunit:htmlunit-core-js:2.15.classpath"/>
+    <path refid="library.maven:_xerces:xercesimpl:2.11.0.classpath"/>
+    <path refid="library.maven:_xml-apis:xml-apis:1.4.01.classpath"/>
+    <path refid="library.maven:_net.sourceforge.nekohtml:nekohtml:1.9.21.classpath"/>
+    <path refid="library.maven:_net.sourceforge.cssparser:cssparser:0.9.14.classpath"/>
+    <path refid="library.maven:_org.w3c.css:sac:1.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.3.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-websocket:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.3.6.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.3.3.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-firefox-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-exec:1.1.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-ie-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:jna:3.4.0.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:platform:3.4.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-safari-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-support:2.45.0.classpath"/>
+    <path refid="library.maven:_org.webbitserver:webbit:0.4.14.classpath"/>
+    <path refid="library.maven:_io.netty:netty:3.5.2.final.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-leg-rc:2.45.0.classpath"/>
+    <path refid="library.maven:_junit:junit:4.11.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-junit47:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit48:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit4:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit3:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-java5:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.shared:maven-shared-utils:0.9.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-grouper:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-api:2.19.classpath"/>
+  </path>
+  
+  <path id="mynewtestfordemo.runtime.production.module.classpath">
+    <pathelement location="${mynewtestfordemo.output.dir}"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-java:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-chrome-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-remote-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_cglib:cglib-nodep:2.1_3.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.3.1.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-api:2.45.0.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:18.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-htmlunit-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_net.sourceforge.htmlunit:htmlunit:2.15.classpath"/>
+    <path refid="library.maven:_xalan:xalan:2.7.1.classpath"/>
+    <path refid="library.maven:_xalan:serializer:2.7.1.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpmime:4.3.3.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_net.sourceforge.htmlunit:htmlunit-core-js:2.15.classpath"/>
+    <path refid="library.maven:_xerces:xercesimpl:2.11.0.classpath"/>
+    <path refid="library.maven:_xml-apis:xml-apis:1.4.01.classpath"/>
+    <path refid="library.maven:_net.sourceforge.nekohtml:nekohtml:1.9.21.classpath"/>
+    <path refid="library.maven:_net.sourceforge.cssparser:cssparser:0.9.14.classpath"/>
+    <path refid="library.maven:_org.w3c.css:sac:1.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.3.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-websocket:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.3.6.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.3.3.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-firefox-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-exec:1.1.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-ie-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:jna:3.4.0.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:platform:3.4.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-safari-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-support:2.45.0.classpath"/>
+    <path refid="library.maven:_org.webbitserver:webbit:0.4.14.classpath"/>
+    <path refid="library.maven:_io.netty:netty:3.5.2.final.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-leg-rc:2.45.0.classpath"/>
+    <path refid="library.maven:_junit:junit:4.11.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-junit47:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit48:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit4:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit3:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-java5:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.shared:maven-shared-utils:0.9.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-grouper:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-api:2.19.classpath"/>
+  </path>
+  
+  <path id="mynewtestfordemo.module.classpath">
+    <path refid="${module.jdk.classpath.mynewtestfordemo}"/>
+    <pathelement location="${mynewtestfordemo.output.dir}"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-java:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-chrome-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-remote-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_cglib:cglib-nodep:2.1_3.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.3.1.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-api:2.45.0.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:18.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-htmlunit-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_net.sourceforge.htmlunit:htmlunit:2.15.classpath"/>
+    <path refid="library.maven:_xalan:xalan:2.7.1.classpath"/>
+    <path refid="library.maven:_xalan:serializer:2.7.1.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpmime:4.3.3.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_net.sourceforge.htmlunit:htmlunit-core-js:2.15.classpath"/>
+    <path refid="library.maven:_xerces:xercesimpl:2.11.0.classpath"/>
+    <path refid="library.maven:_xml-apis:xml-apis:1.4.01.classpath"/>
+    <path refid="library.maven:_net.sourceforge.nekohtml:nekohtml:1.9.21.classpath"/>
+    <path refid="library.maven:_net.sourceforge.cssparser:cssparser:0.9.14.classpath"/>
+    <path refid="library.maven:_org.w3c.css:sac:1.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.3.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-websocket:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.3.6.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.3.3.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-firefox-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-exec:1.1.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-ie-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:jna:3.4.0.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:platform:3.4.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-safari-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-support:2.45.0.classpath"/>
+    <path refid="library.maven:_org.webbitserver:webbit:0.4.14.classpath"/>
+    <path refid="library.maven:_io.netty:netty:3.5.2.final.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-leg-rc:2.45.0.classpath"/>
+    <path refid="library.maven:_junit:junit:4.11.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-junit47:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit48:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit4:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit3:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-java5:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.shared:maven-shared-utils:0.9.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-grouper:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-api:2.19.classpath"/>
+  </path>
+  
+  <path id="mynewtestfordemo.runtime.module.classpath">
+    <pathelement location="${mynewtestfordemo.testoutput.dir}"/>
+    <pathelement location="${mynewtestfordemo.output.dir}"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-java:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-chrome-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-remote-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_cglib:cglib-nodep:2.1_3.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.3.1.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-api:2.45.0.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:18.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-htmlunit-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_net.sourceforge.htmlunit:htmlunit:2.15.classpath"/>
+    <path refid="library.maven:_xalan:xalan:2.7.1.classpath"/>
+    <path refid="library.maven:_xalan:serializer:2.7.1.classpath"/>
+    <path refid="library.maven:_commons-collections:commons-collections:3.2.1.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.3.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpmime:4.3.3.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_net.sourceforge.htmlunit:htmlunit-core-js:2.15.classpath"/>
+    <path refid="library.maven:_xerces:xercesimpl:2.11.0.classpath"/>
+    <path refid="library.maven:_xml-apis:xml-apis:1.4.01.classpath"/>
+    <path refid="library.maven:_net.sourceforge.nekohtml:nekohtml:1.9.21.classpath"/>
+    <path refid="library.maven:_net.sourceforge.cssparser:cssparser:0.9.14.classpath"/>
+    <path refid="library.maven:_org.w3c.css:sac:1.3.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.1.3.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-websocket:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-util:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-io:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.eclipse.jetty:jetty-http:8.1.15.v20140411.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.3.6.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.3.3.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-firefox-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.4.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-exec:1.1.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-ie-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:jna:3.4.0.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:platform:3.4.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-safari-driver:2.45.0.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-support:2.45.0.classpath"/>
+    <path refid="library.maven:_org.webbitserver:webbit:0.4.14.classpath"/>
+    <path refid="library.maven:_io.netty:netty:3.5.2.final.classpath"/>
+    <path refid="library.maven:_org.seleniumhq.selenium:selenium-leg-rc:2.45.0.classpath"/>
+    <path refid="library.maven:_junit:junit:4.11.classpath"/>
+    <path refid="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-junit47:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit48:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit4:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-junit3:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:common-java5:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.shared:maven-shared-utils:0.9.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.1.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-grouper:2.19.classpath"/>
+    <path refid="library.maven:_org.apache.maven.surefire:surefire-api:2.19.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.mynewtestfordemo">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.mynewtestfordemo">
+    <patternset refid="excluded.from.module.mynewtestfordemo"/>
+  </patternset>
+  
+  <path id="mynewtestfordemo.module.sourcepath">
+    <dirset dir="${module.mynewtestfordemo.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="mynewtestfordemo.module.test.sourcepath">
+    <dirset dir="${module.mynewtestfordemo.basedir}">
+      <include name="src/test/functionalTest"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.mynewtestfordemo" depends="compile.module.mynewtestfordemo.production,compile.module.mynewtestfordemo.tests" description="Compile module MyNewTestForDemo"/>
+  
+  <target name="compile.module.mynewtestfordemo.production" depends="register.custom.compilers" description="Compile module MyNewTestForDemo; production classes">
+    <mkdir dir="${mynewtestfordemo.output.dir}"/>
+    <javac2 destdir="${mynewtestfordemo.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.mynewtestfordemo}/javac">
+      <compilerarg line="${compiler.args.mynewtestfordemo}"/>
+      <bootclasspath refid="mynewtestfordemo.module.bootclasspath"/>
+      <classpath refid="mynewtestfordemo.module.production.classpath"/>
+      <src refid="mynewtestfordemo.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.mynewtestfordemo"/>
+    </javac2>
+    
+    <copy todir="${mynewtestfordemo.output.dir}">
+      <fileset dir="${module.mynewtestfordemo.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.mynewtestfordemo.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.mynewtestfordemo.tests" depends="register.custom.compilers,compile.module.mynewtestfordemo.production" description="compile module MyNewTestForDemo; test classes" unless="skip.tests">
+    <mkdir dir="${mynewtestfordemo.testoutput.dir}"/>
+    <javac2 destdir="${mynewtestfordemo.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.mynewtestfordemo}/javac">
+      <compilerarg line="${compiler.args.mynewtestfordemo}"/>
+      <bootclasspath refid="mynewtestfordemo.module.bootclasspath"/>
+      <classpath refid="mynewtestfordemo.module.classpath"/>
+      <src refid="mynewtestfordemo.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.mynewtestfordemo"/>
+    </javac2>
+    
+    <copy todir="${mynewtestfordemo.testoutput.dir}">
+      <fileset dir="${module.mynewtestfordemo.basedir}/src/test/functionalTest">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.mynewtestfordemo" description="cleanup module">
+    <delete dir="${mynewtestfordemo.output.dir}"/>
+    <delete dir="${mynewtestfordemo.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.mynewtestfordemo" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.mynewtestfordemo" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
